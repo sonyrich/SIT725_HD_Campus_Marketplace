@@ -1,12 +1,14 @@
 $kind: http-request
 url: "{{base_url}}/api/auth/login"
 method: POST
+headers:
+  Content-Type: application/json
 body:
   type: json
   content: |-
     {
-      "email": "test@campus.edu",
-      "password": "Test1234!"
+        "email": "test+gzedvmsq@gmail.com",
+        "password": "SxQi90cAUe"
     }
 scripts:
   - type: afterResponse

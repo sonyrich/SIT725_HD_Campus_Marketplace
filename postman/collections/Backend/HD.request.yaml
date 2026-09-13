@@ -1,5 +1,5 @@
 $kind: http-request
-url: ""
+url: "{{base_url}}/api/student"
 method: GET
 examples: .resources/HD.resources/examples
 order: 108192164743827
