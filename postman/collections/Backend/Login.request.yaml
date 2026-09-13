@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{base_url}}/api/auth/login"
+method: POST
+body:
+  type: json
+  content: |-
+    {
+      "email": "test@campus.edu",
+      "password": "Test1234!"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      const res = pm.response.json();
+
+      if (res.success && res.data && res.data.token) {
+          pm.environment.set("token", res.data.token);
+          console.log("Token saved:", res.data.token);
+      } else {
+          console.warn("Login failed or token missing:", res);
+      }
+    language: text/javascript
+examples: .resources/Login.resources/examples
+order: 1053764725871853

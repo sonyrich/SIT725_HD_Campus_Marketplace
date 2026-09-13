@@ -1,0 +1,10 @@
+$kind: http-request
+url: "{{base_url}}/api/listings?search=calc"
+method: GET
+queryParams:
+  - key: search
+    value: calc
+    disabled: false
+    description: ""
+examples: .resources/Search.resources/examples
+order: 4496459597333053

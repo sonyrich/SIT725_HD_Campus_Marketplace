@@ -1,0 +1,30 @@
+$kind: http-request
+url: "{{base_url}}/api/listings"
+method: POST
+headers:
+  Authorization: Bearer {{token}}
+body:
+  type: formdata
+  content:
+    - type: text
+      key: title
+      value: Calculus Textbook
+      disabled: false
+    - type: text
+      key: description
+      value: Barely used, 2nd edition
+      disabled: false
+    - type: text
+      key: price
+      value: "25"
+      disabled: false
+    - type: text
+      key: category
+      value: textbooks
+      disabled: false
+    - type: text
+      key: condition
+      value: Good
+      disabled: false
+examples: .resources/Create Listing.resources/examples
+order: 3175247226372995

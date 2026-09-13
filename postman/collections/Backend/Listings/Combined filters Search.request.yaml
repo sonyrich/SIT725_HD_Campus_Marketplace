@@ -1,0 +1,9 @@
+$kind: http-request
+description: ""
+url: "{{base_url}}/api/listings?category=textbooks&search=calc"
+method: GET
+queryParams:
+  category: textbooks
+  search: calc
+examples: .resources/Combined filters Search.resources/examples
+order: 4497518031073559

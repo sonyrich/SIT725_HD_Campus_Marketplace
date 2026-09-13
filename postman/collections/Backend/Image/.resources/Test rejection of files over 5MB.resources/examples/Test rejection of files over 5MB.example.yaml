@@ -1,0 +1,33 @@
+$kind: http-example
+request:
+  url: "{{base_url}}/test-upload"
+  method: POST
+  body:
+    type: formdata
+    content:
+      - type: file
+        key: image
+        src:
+          - /Users/sony/Downloads/Deakin/26-T2/SIT725-ApplySE/SIT725_G7_Campus_Marketplace/big.jpg
+        description: ""
+        disabled: false
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    x-powered-by: Express
+    access-control-allow-origin: "*"
+    content-type: application/json; charset=utf-8
+    content-length: "74"
+    etag: W/"4a-tJGjBXAKUcROPMrzxThSY7RZ58c"
+    date: Sat, 12 Sep 2026 15:47:03 GMT
+    connection: keep-alive
+    keep-alive: timeout=5
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "File too large. Maximum allowed size is 5MB."
+      }
+order: 1789228027052

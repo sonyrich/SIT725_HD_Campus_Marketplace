@@ -1,0 +1,39 @@
+$kind: http-example
+request:
+  url: "{{base_url}}/api/auth/login"
+  method: POST
+  body:
+    type: json
+    content: |-
+      {
+        "email": "test@campus.edu",
+        "password": "Test1234!"
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    x-powered-by: Express
+    access-control-allow-origin: "*"
+    content-type: application/json; charset=utf-8
+    content-length: "335"
+    etag: W/"14f-xJRCUjoNny4h7hP6VTamRb9d2iI"
+    date: Sat, 12 Sep 2026 15:29:13 GMT
+    connection: keep-alive
+    keep-alive: timeout=5
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YWE1NmQ0ODA4MGRlYWZkMWY1MDU3ZjYiLCJyb2xlIjoidXNlciIsImlhdCI6MTc4OTIyNjk1MywiZXhwIjoxNzg5MzEzMzUzfQ.rNTuibNeV9Be8OE0X8uuXyxxwQQgAI7QdSUXgzkbJi8",
+          "user": {
+            "id": "6aa56d48080deafd1f5057f6",
+            "fullName": "Test User",
+            "email": "test@campus.edu",
+            "role": "user"
+          }
+        }
+      }
+order: 1789227835814

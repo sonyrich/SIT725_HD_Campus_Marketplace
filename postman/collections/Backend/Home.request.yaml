@@ -1,0 +1,6 @@
+$kind: http-request
+description: ""
+url: "{{base_url}}"
+method: GET
+examples: .resources/Home.resources/examples
+order: 377592080768579

@@ -1,0 +1,42 @@
+$kind: http-example
+request:
+  url: "{{base_url}}/api/listings?category=textbooks&search=calc"
+  method: GET
+  queryParams:
+    category: textbooks
+    search: calc
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    x-powered-by: Express
+    access-control-allow-origin: "*"
+    content-type: application/json; charset=utf-8
+    content-length: "335"
+    etag: W/"14f-wy5dgITO3k64JFmaeu/gGc38CNo"
+    date: Sat, 12 Sep 2026 16:46:21 GMT
+    connection: keep-alive
+    keep-alive: timeout=5
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "count": 1,
+        "data": [
+          {
+            "_id": "6aa57005e1f10af31933cbdb",
+            "title": "Calculus Textbook",
+            "description": "Barely used, 2nd edition",
+            "price": 25,
+            "category": "textbooks",
+            "condition": "Good",
+            "status": "available",
+            "seller": "6aa56d48080deafd1f5057f6",
+            "createdAt": "2026-09-12T15:30:13.935Z",
+            "updatedAt": "2026-09-12T15:30:13.935Z",
+            "__v": 0
+          }
+        ]
+      }
+order: 1789231585561

@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{base_url}}/test-upload"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: file
+      key: image
+      src: []
+      description: ""
+      disabled: false
+examples: .resources/Test rejection of non-image files.resources/examples
+order: 1789181371600

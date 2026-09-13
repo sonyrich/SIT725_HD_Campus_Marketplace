@@ -1,0 +1,5 @@
+$kind: http-request
+url: "{{base_url}}/api/listings"
+method: GET
+examples: .resources/Get all Listings.resources/examples
+order: 587810721746352

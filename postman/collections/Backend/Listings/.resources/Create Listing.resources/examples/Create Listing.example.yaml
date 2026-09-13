@@ -1,0 +1,61 @@
+$kind: http-example
+request:
+  url: "{{base_url}}/api/listings"
+  method: POST
+  headers:
+    Authorization: Bearer {{token}}
+  body:
+    type: formdata
+    content:
+      - type: text
+        key: title
+        value: Calculus Textbook
+        disabled: false
+      - type: text
+        key: description
+        value: Barely used, 2nd edition
+        disabled: false
+      - type: text
+        key: price
+        value: "25"
+        disabled: false
+      - type: text
+        key: category
+        value: textbooks
+        disabled: false
+      - type: text
+        key: condition
+        value: Good
+        disabled: false
+response:
+  statusCode: 201
+  statusText: Created
+  headers:
+    x-powered-by: Express
+    access-control-allow-origin: "*"
+    content-type: application/json; charset=utf-8
+    content-length: "323"
+    etag: W/"143-khsk8NJjfKgZYXdD1yL+fy0LO+o"
+    date: Sat, 12 Sep 2026 15:30:13 GMT
+    connection: keep-alive
+    keep-alive: timeout=5
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "title": "Calculus Textbook",
+          "description": "Barely used, 2nd edition",
+          "price": 25,
+          "category": "textbooks",
+          "condition": "Good",
+          "status": "available",
+          "seller": "6aa56d48080deafd1f5057f6",
+          "_id": "6aa57005e1f10af31933cbdb",
+          "createdAt": "2026-09-12T15:30:13.935Z",
+          "updatedAt": "2026-09-12T15:30:13.935Z",
+          "__v": 0
+        }
+      }
+order: 1789227859532

@@ -1,0 +1,20 @@
+$kind: http-example
+request:
+  url: "{{base_url}}"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    x-powered-by: Express
+    access-control-allow-origin: "*"
+    content-type: text/html; charset=utf-8
+    content-length: "32"
+    etag: W/"20-O8tRi2eR9io+bWPWxJNyRhcAuPY"
+    date: Sat, 12 Sep 2026 15:33:34 GMT
+    connection: keep-alive
+    keep-alive: timeout=5
+  body:
+    type: html
+    content: API testing and running properly
+order: 1789227820484

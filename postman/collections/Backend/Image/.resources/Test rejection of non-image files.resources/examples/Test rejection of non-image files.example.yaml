@@ -1,0 +1,33 @@
+$kind: http-example
+request:
+  url: "{{base_url}}/test-upload"
+  method: POST
+  body:
+    type: formdata
+    content:
+      - type: file
+        key: image
+        src:
+          - /Users/sony/Downloads/Deakin/26-T2/SIT725-ApplySE/SIT725_G7_Campus_Marketplace/test.pdf
+        description: ""
+        disabled: false
+response:
+  statusCode: 400
+  statusText: Bad Request
+  headers:
+    x-powered-by: Express
+    access-control-allow-origin: "*"
+    content-type: application/json; charset=utf-8
+    content-length: "81"
+    etag: W/"51-n1TPbigc/p3X0sLi72nT/VjCvOg"
+    date: Sat, 12 Sep 2026 15:44:35 GMT
+    connection: keep-alive
+    keep-alive: timeout=5
+  body:
+    type: json
+    content: |-
+      {
+        "success": false,
+        "message": "Only image files (jpeg, jpg, png, webp) are allowed"
+      }
+order: 1789227919978

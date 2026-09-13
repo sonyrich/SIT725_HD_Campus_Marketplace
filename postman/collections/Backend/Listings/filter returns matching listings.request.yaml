@@ -1,0 +1,9 @@
+$kind: http-request
+url: "{{base_url}}/api/listings?category=textbooks"
+method: GET
+queryParams:
+  - key: category
+    value: textbooks
+    disabled: false
+    description: ""
+order: 4493393692903293

@@ -1,0 +1,42 @@
+$kind: http-example
+request:
+  url: "{{base_url}}/test-upload"
+  method: POST
+  body:
+    type: formdata
+    content:
+      - type: file
+        key: image
+        src:
+          - /Users/sony/Downloads/Deakin/26-T2/SIT725-ApplySE/SIT725_G7_Campus_Marketplace/valid.jpg
+        description: ""
+        disabled: false
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    x-powered-by: Express
+    access-control-allow-origin: "*"
+    content-type: application/json; charset=utf-8
+    content-length: "429"
+    etag: W/"1ad-Sb1USc8dt0RwFn14eByYhxdADzI"
+    date: Sat, 12 Sep 2026 15:47:44 GMT
+    connection: keep-alive
+    keep-alive: timeout=5
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "file": {
+          "fieldname": "image",
+          "originalname": "valid.jpg",
+          "encoding": "7bit",
+          "mimetype": "image/jpeg",
+          "path": "/Users/sony/Downloads/Deakin/26-T2/SIT725-ApplySE/SIT725_G7_Campus_Marketplace/backend/uploads/listing-1789228064237-785716937.jpg",
+          "destination": "/Users/sony/Downloads/Deakin/26-T2/SIT725-ApplySE/SIT725_G7_Campus_Marketplace/backend/uploads",
+          "filename": "listing-1789228064237-785716937.jpg",
+          "size": 2097152
+        }
+      }
+order: 1789228069875
