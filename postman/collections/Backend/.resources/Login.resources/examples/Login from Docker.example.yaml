@@ -1,0 +1,42 @@
+$kind: http-example
+request:
+  url: "{{base_url}}/api/auth/login"
+  method: POST
+  headers:
+    Content-Type: application/json
+  body:
+    type: json
+    content: |-
+      {
+          "email": "test@gmail.com",
+          "password": "password"
+      }
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    x-powered-by: Express
+    access-control-allow-origin: "*"
+    content-type: application/json; charset=utf-8
+    content-length: "369"
+    etag: W/"171-qk2z2BiOhxpWetjtj4xMe1o20Ec"
+    date: Sun, 13 Sep 2026 12:32:18 GMT
+    connection: keep-alive
+    keep-alive: timeout=5
+  body:
+    type: json
+    content: |-
+      {
+        "success": true,
+        "data": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2YWE2OTY2OTYwNDg2Zjg4MTVmMDQ4NGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc4OTMwMjczOCwiZXhwIjoxNzg5Mzg5MTM4fQ.pXVTz4JSPFN1b9ZDaxLYE3mg3GHeIYCNNeUriHh7tco",
+          "user": {
+            "id": "6aa6966960486f8815f0484b",
+            "fullName": "Sony Nguyen",
+            "email": "test@gmail.com",
+            "studentID": "s225090845",
+            "role": "user"
+          }
+        }
+      }
+order: 2783808086619706

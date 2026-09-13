@@ -1,0 +1,24 @@
+$kind: http-example
+request:
+  url: "{{base_url}}/api/student"
+  method: GET
+response:
+  statusCode: 200
+  statusText: OK
+  headers:
+    x-powered-by: Express
+    access-control-allow-origin: "*"
+    content-type: application/json; charset=utf-8
+    content-length: "47"
+    etag: W/"2f-PaG/du2Ac6Lg+OQ6NSMzGPhWOIg"
+    date: Sun, 13 Sep 2026 12:14:24 GMT
+    connection: keep-alive
+    keep-alive: timeout=5
+  body:
+    type: json
+    content: |-
+      {
+        "name": "Sony Nguyen",
+        "studentId": "s225090845"
+      }
+order: 1789301666368
