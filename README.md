@@ -1,4 +1,3 @@
-
 # SIT725 Group 7 — Campus Marketplace (Individual HD Docker Submission)
 
 A web-based marketplace built for university students to buy and sell second-hand items (textbooks, electronics, furniture, etc.) within their own campus community.
@@ -48,6 +47,47 @@ Built as part of the SIT725 unit project (Deakin University). This repository is
 
 ---
 
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- Docker Desktop (or Docker Engine + Docker Compose)
+- npm
+
+### Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/sonyrich/SIT725_HD_Campus_Marketplace.git
+   cd SIT725_HD_Campus_Marketplace/backend
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Copy the environment template and fill in your own values:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   See [Environment Variables](#environment-variables) below for what each value means.
+
+4. Start the server:
+
+   ```bash
+   npm run dev    # with nodemon (auto-restart on changes)
+   # or
+   npm start      # plain node
+   ```
+
+5. The API will be available at `http://localhost:3000` (or whatever `PORT` you set).
+
 ## Environment Variables
 
 `backend/.env` is **not** committed to this repository. Before running the application, copy the template and fill it in:
@@ -56,11 +96,11 @@ Built as part of the SIT725 unit project (Deakin University). This repository is
 cp backend/.env.example backend/.env
 ```
 
-| Variable | What to put | Description |
-|---|---|---|
-| `PORT` | `3000` | Port the server listens on inside the container. |
-| `MONGO_URI` | `mongodb://mongo:27017/campus-marketplace` | Must use the `mongo` service hostname, not `localhost` — inside a container, `localhost` refers to that container itself, not the database container. |
-| `JWT_SECRET` | Any random string, e.g. generate one with the command below | Used only to sign JWTs within this app. There is no "correct" value to match — any string works identically, since the same app both signs and verifies its own tokens. |
+| Variable     | What to Put                                | Description                                                                                                                                                             |
+| ------------ | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `PORT`       | `3000`                                     | Port the server listens on inside the container.                                                                                                                        |
+| `MONGO_URI`  | `mongodb://mongo:27017/campus-marketplace` | Must use the `mongo` service hostname, not `localhost` — inside a container, `localhost` refers to that container itself, not the database container.                   |
+| `JWT_SECRET` | Any random string (see command below)      | Used only to sign JWTs within this app. There is no "correct" value to match — any string works identically, since the same app both signs and verifies its own tokens. |
 
 Generate a `JWT_SECRET` value:
 
@@ -75,21 +115,30 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 1. Ensure Docker and Docker Compose are installed and running.
 
 2. Copy `backend/.env.example` to `backend/.env` and fill in the values as described above.
+
 3. From the repository root, build and start the full stack (app + MongoDB):
+
    ```bash
    docker compose up --build
    ```
+
 4. Wait for these two lines in the terminal, confirming both services are up:
+
    ```
    APP is running on port 3000
    Mongoose Connected
    ```
+
 5. Open `http://localhost:3000` in a browser. The full application (frontend + backend + database) is now running.
+
 6. To stop the containers:
+
    ```bash
    docker compose down
    ```
+
    Add `-v` to also delete the MongoDB data volume for a fully clean reset:
+
    ```bash
    docker compose down -v
    ```
@@ -101,6 +150,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 - **URL**: `http://localhost:3000/api/student`
 - **Method**: `GET`
 - **Expected response**:
+
   ```json
   {
     "name": "Sony Nguyen",
@@ -112,12 +162,12 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 ## Key API Endpoints
 
-| Method | Endpoint | Description |
-|---|---|---|
-| `GET` | `/api/student` | Returns submitter's name and student ID. |
-| `POST` | `/api/auth/register` | Creates a new user account. Requires `fullName`, `email`, `password`, `studentID`. |
-| `POST` | `/api/auth/login` | Authenticates an existing user. Requires `email`, `password`. Returns a JWT and stored user details on success. |
-| `GET` | `/api/listings` | Retrieves marketplace listings. |
+| Method | Endpoint             | Description                                                                                                     |
+| ------ | -------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `GET`  | `/api/student`       | Returns the submitter's name and student ID.                                                                    |
+| `POST` | `/api/auth/register` | Creates a new user account. Requires `fullName`, `email`, `password`, `studentID`.                              |
+| `POST` | `/api/auth/login`    | Authenticates an existing user. Requires `email`, `password`. Returns a JWT and stored user details on success. |
+| `GET`  | `/api/listings`      | Retrieves marketplace listings.                                                                                 |
 
 ---
 
@@ -126,10 +176,10 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 To confirm signup/login are writing to the containerised MongoDB instance rather than failing silently, run the app first, create an account through the UI or via the register endpoint, then query the database directly:
 
 ```bash
-docker exec -it <mongo-container-name> mongosh campus-marketplace --eval "db.users.find().pretty()"
+docker exec -it marketplace-db mongosh campus-marketplace --eval "db.users.find().pretty()"
 ```
 
-(Find `<mongo-container-name>` from `docker ps` — it will be something like `campus-marketplace-hd-mongo-1`.)
+The Mongo container name is fixed to `marketplace-db` by `container_name: marketplace-db` in `docker-compose.yml`, so there's no need to look it up with `docker ps` — the command above will always work as long as the service name in the compose file isn't changed.
 
 A successful signup shows a user document with a bcrypt-hashed password (starting with `$2b$`). If you then log in with `POST /api/auth/login` using the same email and password, you should receive a `200 OK` response containing a JWT token and the same user's stored details.
 
