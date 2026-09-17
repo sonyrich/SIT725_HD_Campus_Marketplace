@@ -1,3 +1,4 @@
+
 # SIT725 Group 7 — Campus Marketplace (Individual HD Docker Submission)
 
 A web-based marketplace built for university students to buy and sell second-hand items (textbooks, electronics, furniture, etc.) within their own campus community.
@@ -47,47 +48,6 @@ Built as part of the SIT725 unit project (Deakin University). This repository is
 
 ---
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v18+ recommended)
-- Docker Desktop (or Docker Engine + Docker Compose)
-- npm
-
-### Setup
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/sonyrich/SIT725_HD_Campus_Marketplace.git
-   cd SIT725_HD_Campus_Marketplace/backend
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Copy the environment template and fill in your own values:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-   See [Environment Variables](#environment-variables) below for what each value means.
-
-4. Start the server:
-
-   ```bash
-   npm run dev    # with nodemon (auto-restart on changes)
-   # or
-   npm start      # plain node
-   ```
-
-5. The API will be available at `http://localhost:3000` (or whatever `PORT` you set).
-
 ## Environment Variables
 
 `backend/.env` is **not** committed to this repository. Before running the application, copy the template and fill it in:
@@ -110,14 +70,39 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 ---
 
-## Running With Docker
+## Getting Started
 
-1. Ensure Docker and Docker Compose are installed and running.
+### Prerequisites
 
-2. Copy `backend/.env.example` to `backend/.env` and fill in the values as described above.
+- Node.js (v18+ recommended)
+- Docker Desktop (or Docker Engine + Docker Compose)
+- npm
 
-3. From the repository root, build and start the full stack (app + MongoDB):
+### Running With Docker
+1. Open Terminal
 
+2. Clone the repository:
+
+   ```bash
+   git clone https://github.com/sonyrich/SIT725_HD_Campus_Marketplace.git
+   cd SIT725_HD_Campus_Marketplace/backend
+   ```
+   
+
+3. Inside the backend folder, copy the environment template and fill in your own values:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   See [Environment Variables](#environment-variables) above for what each value means.
+
+3. Return to the repository root `cd ..` , build and start the full stack (app + MongoDB):
+
+   ```bash
+   cd ..
+   ```
+   
    ```bash
    docker compose up --build
    ```
@@ -173,7 +158,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 ## Verifying Database Integration
 
-To confirm signup/login are writing to the containerised MongoDB instance rather than failing silently, run the app first, create an account through the UI or via the register endpoint, then query the database directly:
+To confirm signup/login are writing to the containerized MongoDB instance rather than failing silently, run the app first, create an account through the UI or via the register endpoint, then query the database directly:
 
 ```bash
 docker exec -it marketplace-db mongosh campus-marketplace --eval "db.users.find().pretty()"
