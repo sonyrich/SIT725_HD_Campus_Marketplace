@@ -74,9 +74,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
 ### Prerequisites
 
-- Node.js (v18+ recommended)
 - Docker Desktop (or Docker Engine + Docker Compose)
-- npm
 
 ### Running With Docker
 1. Open Terminal
@@ -85,6 +83,9 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 
    ```bash
    git clone https://github.com/sonyrich/SIT725_HD_Campus_Marketplace.git
+   ```
+
+   ```bash
    cd SIT725_HD_Campus_Marketplace/backend
    ```
    
