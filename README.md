@@ -1,4 +1,6 @@
 
+
+
 # SIT725 Group 7 — Campus Marketplace (Individual HD Docker Submission)
 
 A web-based marketplace built for university students to buy and sell second-hand items (textbooks, electronics, furniture, etc.) within their own campus community.
@@ -88,17 +90,18 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
    ```bash
    cd SIT725_HD_Campus_Marketplace/backend
    ```
-   
+   ![screenshot](docs/images/01.png)
 
 3. Inside the backend folder, copy the environment template and fill in your own values:
 
    ```bash
    cp .env.example .env
    ```
-
+   ![screenshot](docs/images/02.png)
+   
    See [Environment Variables](#environment-variables) above for what each value means.
 
-3. Return to the repository root `cd ..` , build and start the full stack (app + MongoDB):
+4. Return to the repository root `cd ..` , build and start the full stack (app + MongoDB):
 
    ```bash
    cd ..
@@ -107,27 +110,60 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
    ```bash
    docker compose up --build
    ```
+   
+   ![screenshot](docs/images/03.png)
 
-4. Wait for these two lines in the terminal, confirming both services are up:
+5. Wait for these two lines in the terminal, confirming both services are up:
 
    ```
    APP is running on port 3000
    Mongoose Connected
    ```
+6. Check the Docker compose is running by running the command:
 
-5. Open `http://localhost:3000` in a browser. The full application (frontend + backend + database) is now running.
+   ```bash
+   docker compose ps
+   ```
+   ![screenshot](docs/images/04.png)
 
-6. To stop the containers:
+   Or checking in the Docker Desktop, Container and Images tab:
+   ![screenshot](docs/images/05.png)
+   ![screenshot](docs/images/06.png)
+
+8. Open `http://localhost:3000` in a browser. The full application (frontend + backend + database) is now running.
+   ![screenshot](docs/images/11.png)
+
+9. To stop the containers:
 
    ```bash
    docker compose down
    ```
+   ![screenshot](docs/images/12.png)
 
    Add `-v` to also delete the MongoDB data volume for a fully clean reset:
 
    ```bash
    docker compose down -v
    ```
+   ![screenshot](docs/images/13.png)
+   
+### Troubleshooting
+
+If your containers stop working (for example, if MongoDB stops responding), reset Docker Desktop back to its default settings:
+
+1. Right-click the Docker Desktop icon (menu bar on macOS, system tray on Windows)
+   and click **Troubleshoot**.
+   ![screenshot](docs/images/07.png)
+
+2. In Docker Desktop, click **Reset to factory defaults**.
+   ![screenshot](docs/images/08.png)
+
+3. Click **Yes, reset anyway** to confirm.
+   ![screenshot](docs/images/09.png)
+
+4. Wait for Docker Desktop to finish resetting before trying again.
+   ![screenshot](docs/images/10.png)
+
 
 ---
 
