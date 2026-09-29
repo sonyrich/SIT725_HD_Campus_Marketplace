@@ -187,23 +187,51 @@ If your containers stop working (for example, if MongoDB stops responding), rese
 | Method | Endpoint             | Description                                                                                                     |
 | ------ | -------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `GET`  | `/api/student`       | Returns the submitter's name and student ID.                                                                    |
-| `POST` | `/api/auth/register` | Creates a new user account. Requires `fullName`, `email`, `password`, `studentID`.                              |
+| `POST` | `/api/auth/register` | Creates a new user account. Requires `fullName`, `email`, `password`, `studentId`. |
 | `POST` | `/api/auth/login`    | Authenticates an existing user. Requires `email`, `password`. Returns a JWT and stored user details on success. |
 | `GET`  | `/api/listings`      | Retrieves marketplace listings.                                                                                 |
 
 ---
 
-## Verifying Database Integration
+## Verifying Database Integration (Signup + Login)
 
-To confirm signup/login are writing to the containerized MongoDB instance rather than failing silently, run the app first, create an account through the UI or via the register endpoint, then query the database directly:
+Follow these steps exactly, after the app is running (see Getting Started). No seed account is needed. Use the sample values below (copy them exactly).
+
+| Field            | Value                 |
+| ---------------- | --------------------- |
+| Full name        | `Test Marker`         |
+| Email            | `marker@example.com`  |
+| Password         | `Password123!`        |
+| Confirm password | `Password123!`        |
+| Student ID       | `s000000000`          |
+
+### Step 1: Sign up
+
+1. Open `http://localhost:3000/register.html`.
+2. Type the values from the table above into the form and click the register button.
+3. **Expected:** a success message appears, or you are sent to the login page.
+
+### Step 2: Log in
+
+1. Open `http://localhost:3000/login.html`.
+2. Enter Email `marker@example.com` and Password `Password123!`, then click log in.
+3. **Expected:** you are logged in (success message or redirect to the marketplace).
+
+### Step 3: Confirm the data is stored in MongoDB
+
+Copy and paste this command into the terminal:
 
 ```bash
 docker exec -it marketplace-db mongosh campus-marketplace --eval "db.users.find().pretty()"
 ```
 
-The Mongo container name is fixed to `marketplace-db` by `container_name: marketplace-db` in `docker-compose.yml`, so there's no need to look it up with `docker ps` — the command above will always work as long as the service name in the compose file isn't changed.
+**Expected:** a user document with `fullName: 'Test Marker'`, `email: 'marker@example.com'`, and a `password` that starts with `$2b$` (a hashed password, not the plain text).
 
-A successful signup shows a user document with a bcrypt-hashed password (starting with `$2b$`). If you then log in with `POST /api/auth/login` using the same email and password, you should receive a `200 OK` response containing a JWT token and the same user's stored details.
+### If something does not match
+
+- **"Email already exists" on sign up:** the account was already created. Skip to Step 2, or run `docker compose down -v` and then `docker compose up --build` for a clean database.
+- **Nothing happens on sign up:** check that the terminal shows `Mongoose Connected`, and that you are using `http://localhost:3000`, not any other address.
+- **Step 3 says the container is not found:** run `docker compose ps` and make sure `marketplace-db` is listed as running.
 
 ---
 
